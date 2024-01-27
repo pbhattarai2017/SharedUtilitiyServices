@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      ACCEPT_EULA: "Y"
+      # password is my$123pass
+      # the double dollar sign ($) is for escaping
+      MSSQL_SA_PASSWORD: my$$123pass
+      #POSTGRES_DB: pincodeapi
+      #POSTGRES_USER: pincodeapi
+    ports:
+      - "1433:1433"
+    # volumes:
+    #   - db-data:/var/lib/postgresql/data
+
+# volumes:
+#   db-data:
