@@ -2,7 +2,7 @@
 1. Install OpenJDK 21 from https://jdk.java.net/21/
 2. Install PostgreSQL database server from https://www.postgresql.org/download/
 3. Create user account and database for this project in PostgreSQL.
-4. Now set appropriate values in the project's `application.properties` file for database, username & password. The `application.properties` file is in `SharedUtilityServices/src/main/resources/`.
+4. Now set appropriate values in the project's `application-prod.properties` file for database, username & password. The `application-prod.properties` file is in `SharedUtilityServices/src/main/resources/`.
   > Replace `your_database_name`, `your_username` & `your_password` string with actual value.
   > Replace `localhost:5432` with actual the ip:port of PostgreSQL server.
 4. Open this repository's directory in command line and execute the following command.
