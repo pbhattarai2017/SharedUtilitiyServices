@@ -29,18 +29,24 @@ public class SharedUtilityServicesApplication implements CommandLineRunner {
 	@Value("${spring.jpa.properties.hibernate.jdbc.batch_size}")
 	private Integer batchSize;
 
-	
 	private Log LOG;
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(SharedUtilityServicesApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		try (CSVReader csvReader = new CSVReader(new FileReader(pincodeCsvFileResource.getFile()))) {
+		LOG = LogFactory.getLog(SharedUtilityServicesApplication.class);
 
-			LOG = LogFactory.getLog(SharedUtilityServicesApplication.class);
+		long totalPincodeEntities = pincodeRepository.count();
+		
+		if (totalPincodeEntities > 0) {
+			LOG.info(String.format("Total existing Pincode entities: %d", totalPincodeEntities));
+			return;
+		}
+
+		try (CSVReader csvReader = new CSVReader(new FileReader(pincodeCsvFileResource.getFile()))) {
 
 			String[] line = null;
 			csvReader.readNext();
@@ -68,11 +74,11 @@ public class SharedUtilityServicesApplication implements CommandLineRunner {
 				}
 //				Pincode(Integer pinCode, String officeName, String officeType, String deliveryStatus, String divisionName,
 //						String regionName, String circleName, String taluk, String districtName, String stateName) 
-				pincodeArray.add(new Pincode(Integer.parseInt(line[1]), line[0], line[2], line[3], line[4],
-						line[5], line[6], line[7], line[8], line[9]));
-				
+				pincodeArray.add(new Pincode(Integer.parseInt(line[1]), line[0], line[2], line[3], line[4], line[5],
+						line[6], line[7], line[8], line[9]));
+
 				// flush the Pincode entities to persistence
-				if(pincodeArray.size() >= batchSize) {
+				if (pincodeArray.size() >= batchSize) {
 					count += pincodeArray.size();
 					pincodeRepository.saveAll(pincodeArray);
 					pincodeArray.clear();
@@ -80,10 +86,12 @@ public class SharedUtilityServicesApplication implements CommandLineRunner {
 				}
 			}
 			// flush remaining Pincode entities as well
-			if(pincodeArray.size() > 0) {
+			if (pincodeArray.size() > 0) {
 				pincodeRepository.saveAll(pincodeArray);
 				pincodeArray.clear();
 			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 	}
 
