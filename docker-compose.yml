@@ -6,7 +6,7 @@ services:
     environment:
       POSTGRES_DB: utilityservices
       POSTGRES_USER: utilityuser 
-      POSTGRES_PASSWORD: my$$123pass
+      POSTGRES_PASSWORD: my#123pass
     ports:
       - "5432:5432"
     # volumes:
