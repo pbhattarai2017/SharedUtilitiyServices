@@ -3,11 +3,11 @@ package com.dcode7.sharedutilities.ifsc;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,7 +19,7 @@ public class IfscController {
 	private IfscService ifscService;
 
 	@GetMapping("{ifsc}")
-	public @ResponseBody List<Ifsc> getPincodeDetails(@PathVariable String ifsc) {
-		return ifscService.getDetailsByMatchingIfscPrefix(ifsc);
+	public ResponseEntity<List<Ifsc>> getPincodeDetails(@PathVariable String ifsc) {
+		return ResponseEntity.ok(ifscService.getDetailsByMatchingIfscPrefix(ifsc));
 	}
 }

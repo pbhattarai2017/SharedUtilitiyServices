@@ -1,4 +1,4 @@
-package com.dcode7.sharedutilities.models;
+package com.dcode7.sharedutilities.pincode;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

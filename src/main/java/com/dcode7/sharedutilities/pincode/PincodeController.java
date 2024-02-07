@@ -1,15 +1,14 @@
-package com.dcode7.sharedutilities.controllers;
+package com.dcode7.sharedutilities.pincode;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.dcode7.sharedutilities.models.Pincode;
-import com.dcode7.sharedutilities.repositories.PincodeRepository;
 
 @RestController
 @CrossOrigin(origins="*")
@@ -17,10 +16,10 @@ import com.dcode7.sharedutilities.repositories.PincodeRepository;
 public class PincodeController {
 	
 	@Autowired
-	private PincodeRepository pincodeRepository;
+	private PincodeService pincodeService;
 
 	@GetMapping("{pincode}")
-	public @ResponseBody Iterable<Pincode> getPincodeDetails(@PathVariable int pincode) {
-		return pincodeRepository.findByPinCode(pincode);
+	public ResponseEntity<List<Pincode>> getPincodeDetails(@PathVariable int pincode) {
+		return ResponseEntity.ok(pincodeService.getDetailsByPincode(pincode));
 	}
 }

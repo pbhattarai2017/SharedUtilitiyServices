@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.dcode7'
-version = '0.0.1'
+version = '0.0.3'
 
 java {
 	sourceCompatibility = '17'
@@ -20,7 +20,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'com.opencsv:opencsv:5.9'
-	runtimeOnly 'org.postgresql:postgresql'
+//	runtimeOnly 'org.postgresql:postgresql'
+	runtimeOnly 'com.mysql:mysql-connector-j'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
 }
 

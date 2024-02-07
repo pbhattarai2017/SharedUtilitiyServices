@@ -1,11 +1,13 @@
-package com.dcode7.sharedutilities.repositories;
+package com.dcode7.sharedutilities.pincode;
+
+import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.lang.Nullable;
 
-import com.dcode7.sharedutilities.models.Pincode;
-
 
 public interface PincodeRepository extends CrudRepository<Pincode, Integer> {
-	Iterable<Pincode> findByPinCode(@Nullable Integer pincode);
+
+	List<Pincode> findByPinCode(@Nullable Integer pincode);
+
 }

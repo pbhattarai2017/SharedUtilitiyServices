@@ -14,8 +14,8 @@ import org.springframework.core.io.ClassPathResource;
 
 import com.dcode7.sharedutilities.ifsc.Ifsc;
 import com.dcode7.sharedutilities.ifsc.IfscRepository;
-import com.dcode7.sharedutilities.models.Pincode;
-import com.dcode7.sharedutilities.repositories.PincodeRepository;
+import com.dcode7.sharedutilities.pincode.Pincode;
+import com.dcode7.sharedutilities.pincode.PincodeRepository;
 import com.opencsv.CSVReader;
 
 @SpringBootApplication
